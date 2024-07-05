@@ -11,7 +11,6 @@ class CountriesStatesCitiesServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-
         $package
             ->name('laravel-countries-states-cities')
             ->hasConfigFile($this->package->shortName())
@@ -37,8 +36,8 @@ class CountriesStatesCitiesServiceProvider extends PackageServiceProvider
             // publishes Models And Seeders
             $this->publishes([
                 __DIR__.'/../stubs/Models/Country.php.stub' => app_path('Models/Country.php'),
-                __DIR__.'/../stubs/Models/State.php.stub' => app_path('Models/State.php'),
-                __DIR__.'/../stubs/Models/City.php.stub' => app_path('Models/City.php'),
+                __DIR__.'/../stubs/Models/State.php.stub'   => app_path('Models/State.php'),
+                __DIR__.'/../stubs/Models/City.php.stub'    => app_path('Models/City.php'),
             ], 'countries-states-cities-models');
 
             $this->publishes([

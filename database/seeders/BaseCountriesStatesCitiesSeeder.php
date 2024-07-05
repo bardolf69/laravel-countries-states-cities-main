@@ -26,7 +26,6 @@ class BaseCountriesStatesCitiesSeeder extends Seeder
         } catch (InvalidCodeException $e) {
             $this->command->error($e->getMessage());
         }
-
     }
 
     protected function createCountries(): void
@@ -40,28 +39,28 @@ class BaseCountriesStatesCitiesSeeder extends Seeder
         foreach (array_chunk($countries, $chunkLength) as $chunk) {
             foreach ($chunk as $country) {
                 Country::create([
-                    'id' => $country->id,
-                    'name' => $country->name,
-                    'iso2' => $country->iso2,
-                    'iso3' => $country->iso3,
-                    'numeric_code' => $country->numeric_code,
-                    'phonecode' => $country->phonecode,
-                    'capital' => $country->capital,
-                    'currency' => $country->currency,
-                    'currency_name' => $country->currency_name,
+                    'id'              => $country->id,
+                    'name'            => $country->name,
+                    'iso2'            => $country->iso2,
+                    'iso3'            => $country->iso3,
+                    'numeric_code'    => $country->numeric_code,
+                    'phonecode'       => $country->phonecode,
+                    'capital'         => $country->capital,
+                    'currency'        => $country->currency,
+                    'currency_name'   => $country->currency_name,
                     'currency_symbol' => $country->currency_symbol,
-                    'tld' => $country->tld,
-                    'native' => $country->native,
-                    'region' => $country->region,
-                    'subregion' => $country->subregion,
-                    'timezones' => $country->timezones,
-                    'translations' => $country->translations,
-                    'latitude' => $country->latitude,
-                    'longitude' => $country->longitude,
-                    'emoji' => $country->emoji,
-                    'emojiU' => $country->emojiU,
-                    'flag' => $country->flag,
-                    'is_active' => $this->serves->isCountryActiveByIso2OrIso3(
+                    'tld'             => $country->tld,
+                    'native'          => $country->native,
+                    'region'          => $country->region,
+                    'subregion'       => $country->subregion,
+                    'timezones'       => $country->timezones,
+                    'translations'    => $country->translations,
+                    'latitude'        => $country->latitude,
+                    'longitude'       => $country->longitude,
+                    'emoji'           => $country->emoji,
+                    'emojiU'          => $country->emojiU,
+                    'flag'            => $country->flag,
+                    'is_active'       => $this->serves->isCountryActiveByIso2OrIso3(
                         iso2: $country->iso2,
                         iso3: $country->iso3
                     ),
@@ -73,7 +72,6 @@ class BaseCountriesStatesCitiesSeeder extends Seeder
         $this->command->getOutput()->progressFinish();
         $this->command->info('Country Data Seeded has successful');
         $this->command->line('');
-
     }
 
     protected function createStates(): void
@@ -87,12 +85,12 @@ class BaseCountriesStatesCitiesSeeder extends Seeder
         foreach (array_chunk($states, $chunkLength) as $chunk) {
             foreach ($chunk as $state) {
                 State::create([
-                    'id' => $state->id,
-                    'name' => $state->name,
+                    'id'         => $state->id,
+                    'name'       => $state->name,
                     'country_id' => $state->country_id,
-                    'latitude' => $state->latitude,
-                    'longitude' => $state->longitude,
-                    'is_active' => $this->serves->isStateActiveByCountryId(
+                    'latitude'   => $state->latitude,
+                    'longitude'  => $state->longitude,
+                    'is_active'  => $this->serves->isStateActiveByCountryId(
                         countryId: $state->country_id
                     ),
                 ]);
@@ -116,13 +114,13 @@ class BaseCountriesStatesCitiesSeeder extends Seeder
         foreach (array_chunk($cities, $chunkLength) as $chunk) {
             foreach ($chunk as $city) {
                 City::create([
-                    'id' => $city->id,
-                    'name' => $city->name,
+                    'id'         => $city->id,
+                    'name'       => $city->name,
                     'country_id' => $city->country_id,
-                    'state_id' => $city->state_id,
-                    'latitude' => $city->latitude,
-                    'longitude' => $city->longitude,
-                    'is_active' => $this->serves->isCityActiveByCountryId(
+                    'state_id'   => $city->state_id,
+                    'latitude'   => $city->latitude,
+                    'longitude'  => $city->longitude,
+                    'is_active'  => $this->serves->isCityActiveByCountryId(
                         countryId: $city->country_id
                     ),
                 ]);
@@ -133,6 +131,5 @@ class BaseCountriesStatesCitiesSeeder extends Seeder
 
         $this->command->getOutput()->progressFinish();
         $this->command->info('City Data Seeded has successful');
-
     }
 }

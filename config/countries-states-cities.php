@@ -5,7 +5,7 @@ return [
     'countries' => [
         'activation' => [
             'default' => true,
-            'only' => [
+            'only'    => [
                 'iso2' => [],
                 'iso3' => [],
             ],
