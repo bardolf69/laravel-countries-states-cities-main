@@ -22,14 +22,13 @@ class CountriesStatesCitiesSeederCommand extends Command
 
     public function handle(): int
     {
-
-        if (! $this->serves->isSeedersPublished()) {
+        if (!$this->serves->isSeedersPublished()) {
             $this->components->error('Please RUN `php artisan vendor:publish --tag=countries-states-cities-seeders` to publish seeder class');
 
             return self::INVALID;
         }
 
-        if (! $this->serves->hasMigrationFileName(migrationFileName: 'create_countries_states_cities_table.php')) {
+        if (!$this->serves->hasMigrationFileName(migrationFileName: 'create_countries_states_cities_table.php')) {
             $this->components->error('Please RUN `php artisan vendor:publish --tag=countries-states-cities-migrations` to publish migrations tables');
 
             return self::INVALID;
@@ -37,7 +36,7 @@ class CountriesStatesCitiesSeederCommand extends Command
 
         if ($this->option('force')) {
             $this->call('vendor:publish', [
-                '--tag' => 'countries-states-cities-seeders',
+                '--tag'   => 'countries-states-cities-seeders',
                 '--force' => true,
             ]);
         }
@@ -53,20 +52,20 @@ class CountriesStatesCitiesSeederCommand extends Command
                 return self::INVALID;
             }
         } else {
-            if (! $this->serves->isAllTablesEmpty()) {
-                if (! $this->serves->isCountriesTableEmpty()) {
+            if (!$this->serves->isAllTablesEmpty()) {
+                if (!$this->serves->isCountriesTableEmpty()) {
                     $this->components->error("You can't Seeding in countries table because table has data.");
 
                     return self::INVALID;
                 }
 
-                if (! $this->serves->isStatesTableEmpty()) {
+                if (!$this->serves->isStatesTableEmpty()) {
                     $this->components->error("You can't Seeding in states table because table has data.");
 
                     return self::INVALID;
                 }
 
-                if (! $this->serves->isCitiesTableEmpty()) {
+                if (!$this->serves->isCitiesTableEmpty()) {
                     $this->components->error("You can't Seeding in cities table because table has data.");
 
                     return self::INVALID;

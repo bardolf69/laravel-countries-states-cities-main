@@ -12,7 +12,6 @@ class TestCase extends Orchestra
         parent::setUp();
 
         $this->setUpDatabase();
-
     }
 
     protected function getPackageProviders($app): array
@@ -26,11 +25,10 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
         config()->set('database.connections.testbench', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
-
     }
 
     protected function setUpDatabase(): void

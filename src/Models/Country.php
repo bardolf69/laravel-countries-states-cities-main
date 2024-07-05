@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property int $id
+ * @property int    $id
  * @property string $name
  * @property string $iso2
  * @property string $iso3
@@ -22,14 +22,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $native
  * @property string $region
  * @property string $subregion
- * @property array $timezones
- * @property array $translations
+ * @property array  $timezones
+ * @property array  $translations
  * @property string $latitude
  * @property string $longitude
  * @property string $emoji
  * @property string $emojiU
- * @property bool $flag
- * @property bool $is_active
+ * @property bool   $flag
+ * @property bool   $is_active
  */
 class Country extends Model
 {
@@ -44,9 +44,9 @@ class Country extends Model
 
     protected $casts = [
         'translations' => 'array',
-        'timezones' => 'array',
-        'flag' => 'boolean',
-        'is_active' => 'boolean',
+        'timezones'    => 'array',
+        'flag'         => 'boolean',
+        'is_active'    => 'boolean',
     ];
 
     public function states(): HasMany

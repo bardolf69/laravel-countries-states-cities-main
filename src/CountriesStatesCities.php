@@ -66,12 +66,12 @@ class CountriesStatesCities
     // Activate
     public static function hasIso2Activate(): bool
     {
-        return ! empty(self::getIso2Activate());
+        return !empty(self::getIso2Activate());
     }
 
     public static function hasIso3Activate(): bool
     {
-        return ! empty(self::getIso3Activate());
+        return !empty(self::getIso3Activate());
     }
 
     public static function hasIsoCodeActivate(): bool
@@ -82,12 +82,12 @@ class CountriesStatesCities
     // Except
     public static function hasIso2Except(): bool
     {
-        return ! empty(self::getIso2Except());
+        return !empty(self::getIso2Except());
     }
 
     public static function hasIso3Except(): bool
     {
-        return ! empty(self::getIso3Except());
+        return !empty(self::getIso3Except());
     }
 
     public static function hasIsoCodeExcept(): bool
@@ -148,7 +148,7 @@ class CountriesStatesCities
 
     private static function isTableEmpty($tableName): bool
     {
-        if (! self::hasTable($tableName) && (DB::table($tableName)->count() > 0)) {
+        if (!self::hasTable($tableName) && (DB::table($tableName)->count() > 0)) {
             return false;
         }
 
@@ -157,13 +157,13 @@ class CountriesStatesCities
 
     public static function isSeedersPublished(): bool
     {
-        return ! empty(glob(database_path('seeders/CountriesStatesCitiesTableSeeder.php')));
+        return !empty(glob(database_path('seeders/CountriesStatesCitiesTableSeeder.php')));
     }
 
     // get Ids
     public static function getIdsCountriesActiveByIso2(): array
     {
-        if (! self::hasIso2Activate()) {
+        if (!self::hasIso2Activate()) {
             return [];
         }
 
@@ -175,7 +175,7 @@ class CountriesStatesCities
 
     public static function getIdsCountriesActiveByIso3(): array
     {
-        if (! self::hasIso3Activate()) {
+        if (!self::hasIso3Activate()) {
             return [];
         }
 
@@ -187,7 +187,7 @@ class CountriesStatesCities
 
     public static function getIdsCountriesExceptByIso2(): array
     {
-        if (! self::hasIso2Except()) {
+        if (!self::hasIso2Except()) {
             return [];
         }
 
@@ -199,7 +199,7 @@ class CountriesStatesCities
 
     public static function getIdsCountriesExceptByIso3(): array
     {
-        if (! self::hasIso3Except()) {
+        if (!self::hasIso3Except()) {
             return [];
         }
 
@@ -234,7 +234,7 @@ class CountriesStatesCities
     private static function getJsonFileAsArray(string $fileName)
     {
         $data = File::get(__DIR__."/../database/data/$fileName.json");
-        if (! $data) {
+        if (!$data) {
             return [];
         }
 
@@ -243,7 +243,7 @@ class CountriesStatesCities
 
     protected static function isIso2CountriesActive(string $iso2): bool
     {
-        if (! self::hasIso2Activate()) {
+        if (!self::hasIso2Activate()) {
             return false;
         }
 
@@ -252,7 +252,7 @@ class CountriesStatesCities
 
     protected static function isIso3CountriesActive(string $iso3): bool
     {
-        if (! self::hasIso3Activate()) {
+        if (!self::hasIso3Activate()) {
             return false;
         }
 
@@ -261,7 +261,7 @@ class CountriesStatesCities
 
     protected static function isIso2CountriesExcept(string $iso2): bool
     {
-        if (! self::hasIso2Except()) {
+        if (!self::hasIso2Except()) {
             return false;
         }
 
@@ -270,7 +270,7 @@ class CountriesStatesCities
 
     protected static function isIso3CountriesExcept(string $iso3): bool
     {
-        if (! self::hasIso3Except()) {
+        if (!self::hasIso3Except()) {
             return false;
         }
 
@@ -281,12 +281,12 @@ class CountriesStatesCities
     public static function isCountryActiveByIso2OrIso3(string $iso2, string $iso3): bool
     {
         if (self::hasIsoCodeExcept()) {
-            if (! empty($iso2) && self::hasIso2Except()) {
+            if (!empty($iso2) && self::hasIso2Except()) {
                 if (self::isIso2CountriesExcept($iso2)) {
                     return false;
                 }
             }
-            if (! empty($iso3) && self::hasIso3Except()) {
+            if (!empty($iso3) && self::hasIso3Except()) {
                 if (self::isIso3CountriesExcept($iso3)) {
                     return false;
                 }
@@ -294,12 +294,12 @@ class CountriesStatesCities
         }
 
         if (self::hasIsoCodeActivate()) {
-            if (! empty($iso2) && self::hasIso2Activate()) {
+            if (!empty($iso2) && self::hasIso2Activate()) {
                 if (self::isIso2CountriesActive($iso2)) {
                     return self::isIso2CountriesActive($iso2);
                 }
             }
-            if (! empty($iso3) && self::hasIso3Activate()) {
+            if (!empty($iso3) && self::hasIso3Activate()) {
                 if (self::isIso3CountriesActive($iso3)) {
                     return self::isIso3CountriesActive($iso3);
                 }
@@ -315,12 +315,12 @@ class CountriesStatesCities
 
     public static function isStateActiveByCountryId(int $countryId): bool
     {
-        if (self::hasIsoCodeExcept() && ! empty($countryId)) {
+        if (self::hasIsoCodeExcept() && !empty($countryId)) {
             if (self::isIdCountryExcept($countryId)) {
                 return false;
             }
         }
-        if (self::hasIsoCodeActivate() && ! empty($countryId)) {
+        if (self::hasIsoCodeActivate() && !empty($countryId)) {
             return self::isIdCountryActive($countryId);
         }
 
@@ -329,13 +329,13 @@ class CountriesStatesCities
 
     public static function isCityActiveByCountryId(int $countryId): bool
     {
-        if (self::hasIsoCodeExcept() && ! empty($countryId)) {
+        if (self::hasIsoCodeExcept() && !empty($countryId)) {
             if (self::isIdCountryExcept($countryId)) {
                 return false;
             }
         }
 
-        if (self::hasIsoCodeActivate() && ! empty($countryId)) {
+        if (self::hasIsoCodeActivate() && !empty($countryId)) {
             return self::isIdCountryActive($countryId);
         }
 
@@ -345,7 +345,6 @@ class CountriesStatesCities
     private static function isIdCountryExcept(int $countryId): bool
     {
         return in_array($countryId, self::getIdsCountriesExceptByIso2OrIso3());
-
     }
 
     private static function getIdsCountriesExceptByIso2OrIso3(): array
@@ -359,7 +358,7 @@ class CountriesStatesCities
         if (self::hasIso3Except()) {
             $ids = array_merge($ids, self::getIdsCountriesExceptByIso3());
         }
-        if (! empty($ids)) {
+        if (!empty($ids)) {
             return array_unique($ids);
         }
 
@@ -394,7 +393,6 @@ class CountriesStatesCities
     {
         self::ensureIso2IsValid();
         self::ensureIso3IsValid();
-
     }
 
     /**
@@ -402,9 +400,9 @@ class CountriesStatesCities
      */
     protected static function ensureIso2IsValid(): void
     {
-        if (! empty(self::getIso2ActivateOrExcept())) {
+        if (!empty(self::getIso2ActivateOrExcept())) {
             foreach (self::getIso2ActivateOrExcept() as $key => $value) {
-                if (! self::isIsoCodeValid(
+                if (!self::isIsoCodeValid(
                     column: 'iso2',
                     value: $value
                 )) {
@@ -419,9 +417,9 @@ class CountriesStatesCities
      */
     protected static function ensureIso3IsValid(): void
     {
-        if (! empty(self::getIso3ActivateOrExcept())) {
+        if (!empty(self::getIso3ActivateOrExcept())) {
             foreach (self::getIso3ActivateOrExcept() as $value) {
-                if (! self::isIsoCodeValid(
+                if (!self::isIsoCodeValid(
                     column: 'iso3',
                     value: $value
                 )) {
@@ -441,7 +439,7 @@ class CountriesStatesCities
             $iso2 = array_merge($iso2, self::getiso2Except());
         }
 
-        if (! empty($iso2)) {
+        if (!empty($iso2)) {
             return array_unique($iso2);
         }
 
@@ -467,7 +465,7 @@ class CountriesStatesCities
             $iso3 = array_merge($iso3, self::getIso3Except());
         }
 
-        if (! empty($iso3)) {
+        if (!empty($iso3)) {
             return array_unique($iso3);
         }
 
@@ -479,7 +477,6 @@ class CountriesStatesCities
      */
     public static function getMigrationFileName(string $migrationFileName): ?string
     {
-
         $filesystem = app()->make(Filesystem::class);
         $databasePath = app()->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR;
 
@@ -492,11 +489,10 @@ class CountriesStatesCities
         }
 
         return Str::afterLast($fullFileName, $databasePath);
-
     }
 
     public static function hasMigrationFileName(string $migrationFileName): bool
     {
-        return ! is_null(self::getMigrationFileName($migrationFileName));
+        return !is_null(self::getMigrationFileName($migrationFileName));
     }
 }

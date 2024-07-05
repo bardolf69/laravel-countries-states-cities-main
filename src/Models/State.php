@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property int $id
+ * @property int    $id
  * @property string $name
- * @property int $country_id
+ * @property int    $country_id
  * @property string $latitude
  * @property string $longitude
- * @property bool $is_active
+ * @property bool   $is_active
  */
 class State extends Model
 {
